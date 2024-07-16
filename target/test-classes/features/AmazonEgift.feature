@@ -19,7 +19,7 @@ Feature: Select e gift card from Amazon
     When User click search button
     And User click on "eGift Cards" button
     And User select a gift card
-    Then User verify the preview image should be updated with the selected design "Happy Birthday Cupcake"
+    Then User verify the preview image should be updated with the selected design "Birthday Candles"
     When User select a different amount like "$75"
     Then User verify preview image value should be updated with the new amount "$75.00"
     

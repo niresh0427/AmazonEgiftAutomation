@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+
+import base.Core;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Page_AmazonEgift {
@@ -30,6 +32,7 @@ public class Page_AmazonEgift {
 
 		WebElement btnSearch = driver.findElement(By.id("APjFqb"));
 		btnSearch.submit();
+		
 	}
 
 	public static void getLink(String weblink) throws InterruptedException {
@@ -49,7 +52,7 @@ public class Page_AmazonEgift {
 		} else {
 			Thread.sleep(5000);
 			// Click on "Your Account" button
-			WebElement btnYouraccount = driver.findElement(By.xpath("//a[contains(text(),'Your Account')]"));
+			WebElement btnYouraccount = driver.findElement(By.xpath("//div[@class='nav-bb-right']/a[text()='Your Account']"));
 			btnYouraccount.click();
 			Thread.sleep(5000);
 			// Click on "Deliver to" button again after navigating
@@ -78,11 +81,9 @@ public class Page_AmazonEgift {
 
 	public static void verifyCountry(String dCountry) {
 
-		// Wait for the deliver to button to update with the selected country
 		WebElement changeCountry = driver.findElement(By.xpath("//span[contains(text(),'" + dCountry + "')]"));
-		// change_country.isDisplayed();
 		String btnText = changeCountry.getText();
-		btnText.contains(dCountry);
+		btnText.contains(dCountry); // verify correct country visible on the field
 
 	}
 
@@ -111,7 +112,7 @@ public class Page_AmazonEgift {
 	public static void clickGiftcard() throws InterruptedException {
 
 		WebElement btnGiftcardclick = driver
-				.findElement(By.xpath("//img[contains(@alt, 'Amazon.com eGift Card') and (@data-image-index='1')]"));
+				.findElement(By.xpath("//img[@class='s-image'][@data-image-index='1']")); 
 		btnGiftcardclick.click();
 		Thread.sleep(5000);
 
@@ -126,7 +127,7 @@ public class Page_AmazonEgift {
 		WebElement verifyDesign = driver.findElement(By.xpath("//span[@id='gc-design-title']"));
 		String txtDisplayeddesign = verifyDesign.getText();
 
-		Assert.assertEquals(txtDisplayeddesign, txtDesign);
+		Assert.assertEquals(txtDisplayeddesign, txtDesign); //verify both the names are same
 		Thread.sleep(5000);
 
 	}
@@ -139,9 +140,9 @@ public class Page_AmazonEgift {
 
 	}
 
-	public static void verifyAmount() {
+	public static void verifyAmount(String vamount) {
 
-		WebElement txtAmount = driver.findElement(By.xpath("//span[contains(text(),'$75.00')]"));
+		WebElement txtAmount = driver.findElement(By.xpath("//span[contains(text(),'"+ vamount +"')]"));
 		((ChromeDriver) driver).executeScript("arguments[0].scrollIntoView();", txtAmount); // Scroll to find element
 		txtAmount.isDisplayed();
 

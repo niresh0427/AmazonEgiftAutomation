@@ -5,14 +5,16 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 public class Core {
 
-	 static WebDriver driver = new ChromeDriver(); 
+	WebDriver driver; 
 
 	@BeforeClass
 	public void statrup() {
 
-		System.setProperty("webdriver.chrome.driver", "/AmazonEgiftAutomation/drivers/chromedriver.exe");
+		WebDriverManager.chromedriver().setup(); // Manage the WebDriver automatically
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get("https://www.google.com");

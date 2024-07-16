@@ -88,9 +88,9 @@ public class StepDefenition_AmazonEgidt {
 	}
 
 	@Then("User verify preview image value should be updated with the new amount {string}")
-	public void user_verify_preview_image_value_should_be_updated_with_the_new_amount(String string)
+	public void user_verify_preview_image_value_should_be_updated_with_the_new_amount(String vamount)
 			throws InterruptedException {
-		Page_AmazonEgift.verifyAmount();
+		Page_AmazonEgift.verifyAmount(vamount);
 		Page_AmazonEgift.closeUp();
 
 	}
